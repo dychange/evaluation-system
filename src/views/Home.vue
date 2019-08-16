@@ -67,9 +67,11 @@ export default {
           this.$router.replace("/login");
           break;
         case "edit":
+          if(this.$route.path!=='/editself')
           this.$router.push("/editself");
           break;
         case "pass":
+          if(this.$route.path!=='/editpass')
           this.$router.push("/editpass");
       }
     }
@@ -120,7 +122,7 @@ export default {
   margin-left: 2%;
 }
 .Stripe {
-  height: 30px;
+  height: 20px;
   background-color: #99CCFF;
 }
 </style>

@@ -32,8 +32,8 @@ export default {
     let Admintype = adminInfo.memberAccountTypeId;
     this.adminInfo = {
       nickname: adminInfo.nickname,
-      phone: adminInfo.phone,
-      type: Admintype === 1 ? "超级管理员" : Admintype === 2 ? "管理员" : "客服"
+      phone: adminInfo.telephone,
+      type: Admintype === 1 ? "超级管理员" : Admintype === 2 ? "管理员" : "评估师"
     };
   }
 };

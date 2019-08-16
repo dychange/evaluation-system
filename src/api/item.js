@@ -3,7 +3,7 @@ import axios from './index'
 
 const getItemList=(data)=>{
     return axios.request({
-        url:'/itemInfo/list',
+        url:'/PaintingInfo/list',
         method:'post',
         data
     })

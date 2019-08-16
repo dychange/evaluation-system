@@ -70,6 +70,7 @@ export default {
         if (valid && this.newAdminInfo.memberAccountTypeId != undefined) {
           let AdminInfo = this.newAdminInfo;
           addAdmin(AdminInfo).then(result => {
+            console.log(result)
             if (result.data.status === 200) {
               this.$message.success("创建成功");
               this.$emit("getAllAdminList");
@@ -182,7 +183,7 @@ export default {
         },
         {
           value: 3,
-          label: "客服"
+          label: "评估师"
         }
       ]
     };

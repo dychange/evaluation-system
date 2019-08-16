@@ -47,7 +47,8 @@
 <script>
 import AdminEdit from "./Edit";
 import AddAdmin from "./Add";
-import { getAdminInfo , openAdminInfo} from "../../api/adminList";
+import { getAdminInfo, cancelAdminInfo , openAdminInfo} from "../../api/adminList";
+import { handleAdminData } from "../../lib/handleData";
 export default {
   name: "Admin",
   methods: {
@@ -65,7 +66,12 @@ export default {
     handleDelete(row) {
           let id = row.id;
           let status=row.status='off'
-         
+          cancelAdminInfo({ id,status }).then(result => {
+            if (result.data.status === 200) {
+              this.$message.success("注销成功"),
+                this.currentChange(this.paginations.currentPage);
+            }
+          });
     },
     handleOpen(row){
       let id = row.id
@@ -86,7 +92,11 @@ export default {
         page: 1,
         rows: this.paginations.pageSize
       }).then(result => {
-      
+        // handleData将获取的数据进行一些转换
+        if (result.data.status === 200) {
+          this.adminList = handleAdminData(result);
+          this.paginations.total = result.data.info.total;
+        }
       });
     },
     currentChange(val) {
@@ -95,7 +105,9 @@ export default {
         page: this.paginations.currentPage,
         rows: this.paginations.pageSize
       }).then(result => {
-     
+        if (result.data.status === 200) {
+          this.adminList = handleAdminData(result);
+        }
       });
     }
   },
@@ -105,6 +117,11 @@ export default {
       editDialog: false,
       addDialog: false,
       editAdmin: {
+        id: null,
+        password: null,
+        checkpass: null,
+        memberAccountTypeId: "",
+        telephone: null
       },
       paginations: {
         total: 0,
@@ -114,7 +131,7 @@ export default {
     };
   },
   created() {
-    // this.getAllAdminList();
+    this.getAllAdminList();
   },
   components: {
     AdminEdit,

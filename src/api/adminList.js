@@ -8,6 +8,14 @@ const getAdminInfo=(data)=>{
     })
 }
 
+const cancelAdminInfo=(data)=>{
+    return axios.request({
+        url:'/memberInfo/updateStatus',
+        method:'post',
+        data
+    })
+}
+
 const openAdminInfo=(data)=>{
     return axios.request({
         url:'/memberInfo/updateStatus',
@@ -42,6 +50,7 @@ const updateInfo=(data)=>{
 
 export {
     getAdminInfo,
+    cancelAdminInfo,
     openAdminInfo,
     addAdmin,
     checkName,

@@ -125,7 +125,7 @@ export default {
         },
         {
           value: 3,
-          label: "客服"
+          label: "评估师"
         }
       ]
     };
